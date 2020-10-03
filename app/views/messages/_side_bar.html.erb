@@ -3,15 +3,20 @@
     <%= link_to current_user.name, edit_user_path(current_user)%>
   </div>
   <div class = "chat-create">
-    <a href = "#">チャットを作成する</a>
+    <%= link_to "チャットを作成する", new_room_path %>
   </div>
 </div>
 
 <div class="rooms">
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
+  <% current_user.rooms.each do |room| %>
+  <%# 「チャットルーム名を表示する」という処理を繰り返し実行.。「|room|」の部分は変数名（命名規則はない） %>
+    <div class="room">
+      <div class="room-name">
+        <a href="#"><%= room.name %></a>
+        <%# room.nameの「name」は、roomsテーブルのカラム名 %>
+      </div>
     </div>
+  <% end %>
   </div>
   <div class="room">
     <div class="room-name">

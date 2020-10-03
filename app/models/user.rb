@@ -6,4 +6,6 @@ class User < ApplicationRecord
   
   validates :name, presence: true
   # 「name」カラムに、presence: trueを設けることで、空の場合はDBに保存しないというバリデーションを設定している。
+  has_many :room_users
+  has_many :rooms, through: :room_users
 end

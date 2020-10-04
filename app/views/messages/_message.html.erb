@@ -8,8 +8,8 @@
     </div>
     <div class="message-date">
       <!-- 投稿した時刻を出力する -->
-      <%= message.created_at %>
-      <%# messagesテーブルのcreated_atカラムから、投稿した時刻を取得 %>
+      <%= l message.created_at %>
+      <%# messagesテーブルのcreated_atカラムから、投稿した時刻を取得　そして「エルメソッド」で日本時間にしているよ %>
     </div>
   </div>
   <div class="lower-message">

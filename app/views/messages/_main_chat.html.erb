@@ -7,7 +7,8 @@
   </div>
   <div class="right-header">
     <div class="header-button">
-      <a href="#">チャットを終了する</a>
+      <%= link_to "チャットを終了する", room_path(@room), method: :delete %>
+      <%# 削除するチャットルームを区別するために、定義している@roomを引数にし、room_path(@room)と指定。 %>
     </div>
   </div>
 </div>

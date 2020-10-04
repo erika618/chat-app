@@ -17,6 +17,13 @@ class RoomsController < ApplicationController
   end
   # 成功した場合はredirect_toメソッドでルートパスにリダイレクトし、失敗した場合はrenderメソッドでrooms/new.html.erbのページを表示
 
+  def destroy
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to root_path
+    # destroyアクションは、削除するだけなのでビューの表示は必要ない。そのため、インスタンス変数ではなく変数としてroomを定義し、destroyメソッドを使用。
+  end 
+
   private
 
   def room_params

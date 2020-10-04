@@ -12,15 +12,9 @@
   <%# 「チャットルーム名を表示する」という処理を繰り返し実行.。「|room|」の部分は変数名（命名規則はない） %>
     <div class="room">
       <div class="room-name">
-        <a href="#"><%= room.name %></a>
-        <%# room.nameの「name」は、roomsテーブルのカラム名 %>
+        <%= link_to room.name, room_messages_path(room) %>
+        <%# room.nameの「name」は、roomsテーブルのカラム名。パスにルームを引数とすることでメッセージと紐づいているチャットルームのidを持たせることができる。 %>
       </div>
     </div>
   <% end %>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
 </div>

@@ -12,38 +12,10 @@
 </div>
 
 <div class="messages">
-  <div class="message">
-    <div class="upper-message">
-      <div class="message-user">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(Wed) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-content">
-        おはよう
-      </div>
-    </div>
-  </div>
-
-  <div class="message">
-    <div class="upper-message">
-      <div class="message-user">
-        Sim
-      </div>
-      <div class="message-date">
-        2020/3/31(Wed) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-content">
-        こんばんは
-      </div>
-    </div>
-  </div>
-</div>  
+  <%= render partial: 'message', collection: @messages %>
+<%# PicTweetではeachメソッドで繰り返し一覧表示していたものを、collectionオプションを使うことで、一行で記述できる %>
+<%# <%= render partial: 'hoge', collection: 繰り返し表示する要素が入っているインスタンス %>
+</div> 
 
 <%= form_with model: [@room, @message], class: 'form', local: true do |f| %>
 <%# form_withの引数に@room, @messageの２つを渡している。それに応じたコントローラーのindexアクションに定義する必要あり。 %>

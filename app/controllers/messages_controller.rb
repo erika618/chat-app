@@ -6,8 +6,10 @@ class MessagesController < ApplicationController
 # @roomには、Room.find(params[:room_id])と記述することで、paramsに含まれているroom_idを代入します。
 # 紐解いて説明すると、直前の問題にあった通りルーティングをネストしているため/rooms/:room_id/messagesといったパスになります。
 # パスにroom_idが含まれているため、paramsというハッシュオブジェクトの中に、room_idという値が存在しています。そのため、params[:room_id]と記述することでroom_idを取得できます。
+    @messages = @room.messages.includes(:user)
+    # メッセージに紐付くユーザー情報の取得に、メッセージの数と同じ回数のアクセスが必要になり、N+1問題が発生するため防ぐ
   end
-
+  
   def create
     @room = Room.find(params[:room_id])
     @message = @room.messages.new(message_params)
@@ -17,8 +19,9 @@ class MessagesController < ApplicationController
       redirect_to room_messages_path(@room)
       # （参加しているチャットルームに投稿したメッセージの一覧画面）にリダイレクト
     else
+      @messages = @room.messages.includes(:user)
       render :index
-      # メッセージの保存に失敗した場合に関しては、renderを用いて投稿した段階に戻る記述を行っている
+      # 投稿に失敗したときの処理にも、同様に@messagesを定義。renderを用いることで、投稿に失敗した@messageの情報を保持しつつindex.html.erbを参照できる（この時、indexアクションは経由しない）。しかし、そのときに@messagesが定義されていないとエラーになる。そこで、indexアクションと同様に@messagesを定義する必要あり。
     end
   end
 
